@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinema API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      .swagger-btn {
+        display: inline-block;
+        background-color: #85ea2d;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center;
+        font-size: 16px;
+      }
+      .swagger-btn:hover {
+        background-color: #6bc71e;
+      }
+      .endpoints {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .endpoint {
+        margin: 10px 0;
+        padding: 10px;
+        border-left: 4px solid #007bff;
+        background-color: white;
+      }
+      .method {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .highlight {
+        background-color: #fff3cd;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+        border-left: 4px solid #ffc107;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎬 Cinema API</h1>
+      <p>
+        Bienvenido a la API de Cinema. Esta aplicación gestiona una base de
+        datos de películas.
+      </p>
+
+      <div class="highlight">
+        <h3>📚 Documentación Interactiva</h3>
+        <p>
+          Usa Swagger UI para probar la API directamente desde tu navegador:
+        </p>
+        <a href="/swagger-ui.html" class="swagger-btn">🚀 Abrir Swagger UI</a>
+      </div>
+
+      <div class="endpoints">
+        <h3>Endpoints disponibles:</h3>
+
+        <div class="endpoint">
+          <span class="method">GET</span> /movies/ - Obtener todas las películas
+        </div>
+
+        <div class="endpoint">
+          <span class="method">GET</span> /movies/{id} - Obtener película por ID
+        </div>
+
+        <div class="endpoint">
+          <span class="method">POST</span> /movies/ - Crear nueva película
+        </div>
+
+        <div class="endpoint">
+          <span class="method">PUT</span> /movies/{id} - Actualizar película
+        </div>
+
+        <div class="endpoint">
+          <span class="method">DELETE</span> /movies/{id} - Eliminar película
+        </div>
+      </div>
+
+      <div class="highlight">
+        <h4>Otros recursos:</h4>
+        <ul>
+          <li>
+            <a href="/api-docs">API Docs (JSON)</a> - Especificación OpenAPI en
+            formato JSON
+          </li>
+          <li>
+            <a href="/movies/">Endpoint de películas</a> - Ver datos
+            directamente
+          </li>
+        </ul>
+      </div>
+
+      <h4>Ejemplo de película (JSON):</h4>
+      <pre
+        style="
+          background-color: #f8f9fa;
+          padding: 15px;
+          border-radius: 5px;
+          overflow-x: auto;
+        "
+      >
+{
+    "title": "El Padrino",
+    "duration": 175,
+    "gender": "Drama",
+    "description": "Un drama épico sobre una familia mafiosa",
+    "posterUrl": "https://example.com/poster.jpg"
+}</pre
+      >
+    </div>
+  </body>
+</html>
