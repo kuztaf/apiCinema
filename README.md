@@ -32,6 +32,17 @@ SpringCinema es una aplicación web desarrollada con Spring Boot para la gestió
    ./mvnw spring-boot:run
    ```
 
+## Entidades
+
+La aplicación gestiona las siguientes entidades principales:
+
+- **Cine**: Representa un cine con sus salas y ubicación.
+- **Sala**: Espacio dentro de un cine donde se proyectan películas.
+- **Película**: Información sobre las películas disponibles.
+- **Función**: Proyección de una película en una sala y horario específico.
+- **Usuario**: Personas que pueden reservar asientos y administrar el sistema.
+- **Reserva**: Registro de asientos reservados por los usuarios para una función.
+
 ## Uso
 
 Accede a `http://localhost:8080` en tu navegador para comenzar a usar la aplicación.
