@@ -2,6 +2,8 @@ package com.cinema.cinema.dto;
 
 import java.time.LocalDateTime;
 
+import com.cinema.cinema.entity.Movie;
+import com.cinema.cinema.entity.User;
 import com.cinema.cinema.types.ReservationStatusEnum;
 
 import lombok.AllArgsConstructor;
@@ -13,8 +15,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ReservationRequestDto {
    
-    private int userId;
-    private int movieId;
+    private User user;
+    private Movie movie;
     private LocalDateTime reservationTime;
     private ReservationStatusEnum status;
 }

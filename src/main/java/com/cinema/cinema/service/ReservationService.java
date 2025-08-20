@@ -35,8 +35,8 @@ public class ReservationService {
     public Reservation updateReservation(int id, ReservationRequestDto reservationRequestDto) {
         Reservation existingReservation = getReservationById(id);
         if (existingReservation != null) {
-            existingReservation.setUserId(reservationRequestDto.getUserId());
-            existingReservation.setMovieId(reservationRequestDto.getMovieId());
+            existingReservation.setUser(reservationRequestDto.getUser());
+            existingReservation.setMovie(reservationRequestDto.getMovie());
             existingReservation.setReservationTime(reservationRequestDto.getReservationTime());
             existingReservation.setStatus(reservationRequestDto.getStatus());
             return reservationRepository.save(existingReservation);
@@ -46,8 +46,8 @@ public class ReservationService {
     
     public Reservation addReservation(ReservationRequestDto reservationRequestDto) {
         Reservation reservation = new Reservation();
-        reservation.setUserId(reservationRequestDto.getUserId());
-        reservation.setMovieId(reservationRequestDto.getMovieId());
+        reservation.setUser(reservationRequestDto.getUser());
+        reservation.setMovie(reservationRequestDto.getMovie());
         reservation.setReservationTime(reservationRequestDto.getReservationTime());
         reservation.setStatus(reservationRequestDto.getStatus());
         return reservationRepository.save(reservation);
