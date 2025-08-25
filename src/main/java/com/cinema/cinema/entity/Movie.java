@@ -1,5 +1,6 @@
 
 package com.cinema.cinema.entity;
+
 import com.cinema.cinema.types.MovieGenderEnum;
 
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
@@ -18,8 +20,9 @@ import jakarta.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Movie {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -47,5 +50,4 @@ public class Movie {
     @Size(max = 255)
     private String posterUrl;
 
- 
 }

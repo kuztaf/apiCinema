@@ -35,11 +35,11 @@ public class MovieService {
     public Movie updateMovie(int id, MovieRequestDto movie) {
         Movie existingMovie = getMovieById(id);
         if (existingMovie != null) {
-            existingMovie.setTitle(movie.getTitle());
-            existingMovie.setGender(movie.getGender());
-            existingMovie.setDuration(movie.getDuration());
-            existingMovie.setDescription(movie.getDescription());
-            existingMovie.setPosterUrl(movie.getPosterUrl());
+            existingMovie.setTitle(movie.title());
+            existingMovie.setGender(movie.gender());
+            existingMovie.setDuration(movie.duration());
+            existingMovie.setDescription(movie.description());
+            existingMovie.setPosterUrl(movie.posterUrl());
             return movieRepository.save(existingMovie);
         }
         return null;
@@ -47,14 +47,13 @@ public class MovieService {
 
     public Movie addMovie(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
-        movie.setTitle(movieRequestDto.getTitle());
-        movie.setDuration(movieRequestDto.getDuration());
-        movie.setGender(movieRequestDto.getGender());
-        movie.setDescription(movieRequestDto.getDescription());
-        movie.setPosterUrl(movieRequestDto.getPosterUrl());
+        movie.setTitle(movieRequestDto.title());
+        movie.setDuration(movieRequestDto.duration());
+        movie.setGender(movieRequestDto.gender());
+        movie.setDescription(movieRequestDto.description());
+        movie.setPosterUrl(movieRequestDto.posterUrl());
         return movieRepository.save(movie);
 
     }
-
 
 }
