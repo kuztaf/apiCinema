@@ -35,8 +35,8 @@ public class RoomService {
     public Room updateRoom(int id, RoomRequestDto roomRequestDto) {
         Room existingRoom = getRoomById(id);
         if (existingRoom != null) {
-            existingRoom.setName(roomRequestDto.getName());
-            existingRoom.setCapacity(roomRequestDto.getCapacity());
+            existingRoom.setName(roomRequestDto.name());
+            existingRoom.setCapacity(roomRequestDto.capacity());
             return roomRepository.save(existingRoom);
         }
         return null;
@@ -44,8 +44,8 @@ public class RoomService {
 
     public Room addRoom(RoomRequestDto roomRequestDto) {
         Room room = Room.builder()
-                .name(roomRequestDto.getName())
-                .capacity(roomRequestDto.getCapacity())
+                .name(roomRequestDto.name())
+                .capacity(roomRequestDto.capacity())
                 .build();
         return roomRepository.save(room);
     }

@@ -35,8 +35,9 @@ public class ReservedSeatService {
     public ReservedSeat updateReservedSeat(int id, ReservedSeatRequestDto reservedSeatRequestDto) {
         ReservedSeat existingReservedSeat = getReservedSeatById(id);
         if (existingReservedSeat != null) {
-            existingReservedSeat.setReservation(reservedSeatRequestDto.getReservation());
-            existingReservedSeat.setSeat(reservedSeatRequestDto.getSeat());
+            existingReservedSeat.setReservation(reservedSeatRequestDto.reservation());
+            existingReservedSeat.setSeat(reservedSeatRequestDto.seat());
+            existingReservedSeat.setStatus(reservedSeatRequestDto.status());
             return reservedSeatRepository.save(existingReservedSeat);
         }
         return null;
@@ -44,8 +45,9 @@ public class ReservedSeatService {
 
     public ReservedSeat addReservedSeat(ReservedSeatRequestDto reservedSeatRequestDto) {
         ReservedSeat reservedSeat = new ReservedSeat();
-        reservedSeat.setReservation(reservedSeatRequestDto.getReservation());
-        reservedSeat.setSeat(reservedSeatRequestDto.getSeat());
+        reservedSeat.setReservation(reservedSeatRequestDto.reservation());
+        reservedSeat.setSeat(reservedSeatRequestDto.seat());
+        reservedSeat.setStatus(reservedSeatRequestDto.status());
         return reservedSeatRepository.save(reservedSeat);
     }
 

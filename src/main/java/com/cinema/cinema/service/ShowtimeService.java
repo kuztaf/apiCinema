@@ -34,21 +34,22 @@ public class ShowtimeService {
     public Showtime updateShowtime(int id, ShowtimeRequestDto showtimeRequestDto) {
         Showtime existingShowtime = getShowtimeById(id);
         if (existingShowtime != null) {
-            existingShowtime.setMovie(showtimeRequestDto.getMovie());
-            existingShowtime.setRoom(showtimeRequestDto.getRoom());
-            existingShowtime.setStartTime(showtimeRequestDto.getStartTime());
-            existingShowtime.setEndTime(showtimeRequestDto.getEndTime());
+            existingShowtime.setMovie(showtimeRequestDto.movie());
+            existingShowtime.setRoom(showtimeRequestDto.room());
+            existingShowtime.setStartTime(showtimeRequestDto.startTime());
+            existingShowtime.setEndTime(showtimeRequestDto.endTime());
             return showtimeRepository.save(existingShowtime);
         }
         return null;
     }
 
     public Showtime addShowtime(ShowtimeRequestDto showtimeRequestDto) {
-        Showtime newShowtime = new Showtime();
-        newShowtime.setMovie(showtimeRequestDto.getMovie());
-        newShowtime.setRoom(showtimeRequestDto.getRoom());
-        newShowtime.setStartTime(showtimeRequestDto.getStartTime());
-        newShowtime.setEndTime(showtimeRequestDto.getEndTime());
+        Showtime newShowtime = Showtime.builder()
+                .movie(showtimeRequestDto.movie())
+                .room(showtimeRequestDto.room())
+                .startTime(showtimeRequestDto.startTime())
+                .endTime(showtimeRequestDto.endTime())
+                .build();
         return showtimeRepository.save(newShowtime);
     }
 }

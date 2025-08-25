@@ -35,21 +35,22 @@ public class UserService {
     public User updateUser(int id, UserRequestDto userRequestDto) {
         User existingUser = getUserById(id);
         if (existingUser != null) {
-            existingUser.setName(userRequestDto.getName());
-            existingUser.setEmail(userRequestDto.getEmail());
-            existingUser.setPassword(userRequestDto.getPassword());
-            existingUser.setRole(userRequestDto.getRole());
+            existingUser.setName(userRequestDto.name());
+            existingUser.setEmail(userRequestDto.email());
+            existingUser.setPassword(userRequestDto.password());
+            existingUser.setRole(userRequestDto.role());
             return userRepository.save(existingUser);
         }
         return null;
     }
 
     public User addUser(UserRequestDto userRequestDto) {
-        User user = new User();
-        user.setName(userRequestDto.getName());
-        user.setEmail(userRequestDto.getEmail());
-        user.setPassword(userRequestDto.getPassword());
-        user.setRole(userRequestDto.getRole());
+        User user = User.builder()
+                .name(userRequestDto.name())
+                .email(userRequestDto.email())
+                .password(userRequestDto.password())
+                .role(userRequestDto.role())
+                .build();
         return userRepository.save(user);
     }
 }

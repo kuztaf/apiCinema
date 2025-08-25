@@ -46,14 +46,14 @@ public class MovieService {
     }
 
     public Movie addMovie(MovieRequestDto movieRequestDto) {
-        Movie movie = new Movie();
-        movie.setTitle(movieRequestDto.title());
-        movie.setDuration(movieRequestDto.duration());
-        movie.setGender(movieRequestDto.gender());
-        movie.setDescription(movieRequestDto.description());
-        movie.setPosterUrl(movieRequestDto.posterUrl());
+        Movie movie = Movie.builder()
+                .title(movieRequestDto.title())
+                .duration(movieRequestDto.duration())
+                .gender(movieRequestDto.gender())
+                .description(movieRequestDto.description())
+                .posterUrl(movieRequestDto.posterUrl())
+                .build();
         return movieRepository.save(movie);
-
     }
 
 }
