@@ -24,12 +24,12 @@ public class Seat {
     private int id;
     @Min(1)
     @Max(200)
-    @Column(nullable = false)
-    private int row;
+    @Column(nullable = false, name = "seat_row")
+    private int seatRow;
     @Min(1)
     @Max(200)
-    @Column(nullable = false)
-    private int column;
+    @Column(nullable = false, name = "seat_column")
+    private int seatColumn;
     @NotNull
     @ManyToOne
     private Room room;

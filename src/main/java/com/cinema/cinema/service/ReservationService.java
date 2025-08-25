@@ -35,21 +35,22 @@ public class ReservationService {
     public Reservation updateReservation(int id, ReservationRequestDto reservationRequestDto) {
         Reservation existingReservation = getReservationById(id);
         if (existingReservation != null) {
-            existingReservation.setUser(reservationRequestDto.getUser());
-            existingReservation.setMovie(reservationRequestDto.getMovie());
-            existingReservation.setReservationTime(reservationRequestDto.getReservationTime());
-            existingReservation.setStatus(reservationRequestDto.getStatus());
+            existingReservation.setUser(reservationRequestDto.user());
+            existingReservation.setShowtime(reservationRequestDto.showtime());
+            existingReservation.setReservationTime(reservationRequestDto.reservationTime());
+            existingReservation.setStatus(reservationRequestDto.status());
             return reservationRepository.save(existingReservation);
         }
         return null;
     }
-    
+
     public Reservation addReservation(ReservationRequestDto reservationRequestDto) {
-        Reservation reservation = new Reservation();
-        reservation.setUser(reservationRequestDto.getUser());
-        reservation.setMovie(reservationRequestDto.getMovie());
-        reservation.setReservationTime(reservationRequestDto.getReservationTime());
-        reservation.setStatus(reservationRequestDto.getStatus());
+        Reservation reservation = Reservation.builder()
+                .user(reservationRequestDto.user())
+                .showtime(reservationRequestDto.showtime())
+                .reservationTime(reservationRequestDto.reservationTime())
+                .status(reservationRequestDto.status())
+                .build();
         return reservationRepository.save(reservation);
     }
 }

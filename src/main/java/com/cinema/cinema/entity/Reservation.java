@@ -31,7 +31,7 @@ public class Reservation {
 
     @ManyToOne
     @NotNull
-    private Movie movie;
+    private Showtime showtime;
 
     @NotNull
     @FutureOrPresent

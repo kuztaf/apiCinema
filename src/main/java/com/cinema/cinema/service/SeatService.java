@@ -35,19 +35,20 @@ public class SeatService {
     public Seat updateSeat(int id, SeatRequestDto seatRequestDto) {
         Seat existingSeat = getSeatById(id);
         if (existingSeat != null) {
-            existingSeat.setRow(seatRequestDto.getRow());
-            existingSeat.setColumn(seatRequestDto.getColumn());
-            existingSeat.setRoom(seatRequestDto.getRoom());
+            existingSeat.setSeatRow(seatRequestDto.row());
+            existingSeat.setSeatColumn(seatRequestDto.column());
+            existingSeat.setRoom(seatRequestDto.room());
             return seatRepository.save(existingSeat);
         }
         return null;
     }
 
     public Seat addSeat(SeatRequestDto seatRequestDto) {
-        Seat seat = new Seat();
-        seat.setRow(seatRequestDto.getRow());
-        seat.setColumn(seatRequestDto.getColumn());
-        seat.setRoom(seatRequestDto.getRoom());
+        Seat seat = Seat.builder()
+                .seatRow(seatRequestDto.row())
+                .seatColumn(seatRequestDto.column())
+                .room(seatRequestDto.room())
+                .build();
         return seatRepository.save(seat);
     }
 

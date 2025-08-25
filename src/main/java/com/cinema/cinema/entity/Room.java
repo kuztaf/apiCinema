@@ -25,7 +25,7 @@ public class Room {
     @NotBlank
     @Column(nullable = false, length = 100)
     private String name;
-    @Min(1)
+    @Min(60)
     @Max(1000)
     @Column(nullable = false)
     private int capacity;

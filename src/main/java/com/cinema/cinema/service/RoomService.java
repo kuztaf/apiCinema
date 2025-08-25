@@ -18,7 +18,7 @@ public class RoomService {
     public List<Room> getAllRooms() {
         return roomRepository.findAll();
     }
-    
+
     public Room getRoomById(int id) {
         return roomRepository.findById(id).orElse(null);
     }
@@ -43,9 +43,10 @@ public class RoomService {
     }
 
     public Room addRoom(RoomRequestDto roomRequestDto) {
-        Room room = new Room();
-        room.setName(roomRequestDto.getName());
-        room.setCapacity(roomRequestDto.getCapacity());
+        Room room = Room.builder()
+                .name(roomRequestDto.getName())
+                .capacity(roomRequestDto.getCapacity())
+                .build();
         return roomRepository.save(room);
     }
 }

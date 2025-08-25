@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinema.dto.RoomRequestDto;
+import com.cinema.cinema.dto.SeatRequestDto;
 import com.cinema.cinema.entity.Room;
 import com.cinema.cinema.service.RoomService;
-
-
+import com.cinema.cinema.service.SeatService;
 
 @RestController
 @RequestMapping("/rooms")
@@ -26,7 +26,9 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    
+    @Autowired
+    private SeatService seatService;
+
     @GetMapping("/")
     public ResponseEntity<List<Room>> getAllRooms() {
         List<Room> rooms = roomService.getAllRooms();
@@ -60,13 +62,27 @@ public class RoomController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Room> addRoom(@PathVariable int id, @RequestBody RoomRequestDto roomRequestDto) {
+    @PostMapping("/")
+    public ResponseEntity<Room> addRoom(@RequestBody RoomRequestDto roomRequestDto) {
         Room newRoom = roomService.addRoom(roomRequestDto);
         if (newRoom != null) {
+            createSeatsForRoom(newRoom);
             return ResponseEntity.status(201).body(newRoom);
         }
         return ResponseEntity.badRequest().build();
     }
-   
+
+    private void createSeatsForRoom(Room newRoom) {
+        // create all seats for the room
+        // each col = 10 and each row = capacity / 10
+        int cols = 10;
+        int rows = newRoom.getCapacity() / cols;
+        for (int row = 1; row <= rows; row++) {
+            for (int col = 1; col <= cols; col++) {
+                SeatRequestDto seatRequestDto = new SeatRequestDto(row, col, newRoom);
+                seatService.addSeat(seatRequestDto);
+            }
+        }
+    }
+
 }
