@@ -1,4 +1,5 @@
 package com.cinema.cinema.entity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,11 +10,13 @@ import jakarta.persistence.EnumType;
 import java.time.LocalDateTime;
 import com.cinema.cinema.types.ReservationStatusEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -29,7 +32,7 @@ public class Reservation {
     @ManyToOne
     @NotNull
     private Movie movie;
-    
+
     @NotNull
     @FutureOrPresent
     @Column(nullable = false)
