@@ -51,7 +51,8 @@ public class ReservedSeatController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ReservedSeat> updateReservedSeat(@PathVariable int id, @RequestBody ReservedSeatRequestDto reservedSeatRequestDto) {
+    public ResponseEntity<ReservedSeat> updateReservedSeat(@PathVariable int id,
+            @RequestBody ReservedSeatRequestDto reservedSeatRequestDto) {
         ReservedSeat updatedReservedSeat = reservedSeatService.updateReservedSeat(id, reservedSeatRequestDto);
         if (updatedReservedSeat != null) {
             return ResponseEntity.ok(updatedReservedSeat);
@@ -59,8 +60,10 @@ public class ReservedSeatController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PostMapping("/{id}")
-    public ResponseEntity<ReservedSeat> addReservedSeat(@PathVariable int id, @RequestBody ReservedSeatRequestDto reservedSeatRequestDto) {
+
+    @PostMapping("/")
+    public ResponseEntity<ReservedSeat> addReservedSeat(
+            @RequestBody ReservedSeatRequestDto reservedSeatRequestDto) {
         ReservedSeat newReservedSeat = reservedSeatService.addReservedSeat(reservedSeatRequestDto);
         if (newReservedSeat != null) {
             return ResponseEntity.status(201).body(newReservedSeat);

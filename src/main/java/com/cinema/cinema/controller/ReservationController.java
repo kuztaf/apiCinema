@@ -17,8 +17,6 @@ import com.cinema.cinema.dto.ReservationRequestDto;
 import com.cinema.cinema.entity.Reservation;
 import com.cinema.cinema.service.ReservationService;
 
-
-
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController {
@@ -51,7 +49,8 @@ public class ReservationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reservation> updateReservation(@PathVariable int id, @RequestBody ReservationRequestDto reservationRequestDto) {
+    public ResponseEntity<Reservation> updateReservation(@PathVariable int id,
+            @RequestBody ReservationRequestDto reservationRequestDto) {
         Reservation updatedReservation = reservationService.updateReservation(id, reservationRequestDto);
         if (updatedReservation != null) {
             return ResponseEntity.ok(updatedReservation);
@@ -59,8 +58,8 @@ public class ReservationController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Reservation> addReservation(@PathVariable int id, @RequestBody ReservationRequestDto reservationRequestDto) {
+    @PostMapping("/")
+    public ResponseEntity<Reservation> addReservation(@RequestBody ReservationRequestDto reservationRequestDto) {
         Reservation newReservation = reservationService.addReservation(reservationRequestDto);
         if (newReservation != null) {
             return ResponseEntity.status(201).body(newReservation);

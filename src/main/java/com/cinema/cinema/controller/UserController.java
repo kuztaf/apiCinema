@@ -18,8 +18,6 @@ import com.cinema.cinema.dto.UserRequestDto;
 import com.cinema.cinema.entity.User;
 import com.cinema.cinema.service.UserService;
 
-
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -50,6 +48,7 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody UserRequestDto userRequestDto) {
         User updatedUser = userService.updateUser(id, userRequestDto);
@@ -64,5 +63,5 @@ public class UserController {
         User createdUser = userService.addUser(userRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
-    
+
 }
