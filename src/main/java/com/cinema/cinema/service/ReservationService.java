@@ -53,4 +53,14 @@ public class ReservationService {
                 .build();
         return reservationRepository.save(reservation);
     }
+
+    public Reservation handleReservation(int id, ReservationRequestDto reservationRequestDto) {
+        Reservation existingReservation = getReservationById(id);
+        if (existingReservation != null) {
+            existingReservation.setStatus(reservationRequestDto.status());
+            return reservationRepository.save(existingReservation);
+        }
+        return null;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.cinema.cinema.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.cinema.cinema.dto.ReservedSeatRequestDto;
 import com.cinema.cinema.entity.ReservedSeat;
 import com.cinema.cinema.repository.ReservedSeatRepository;
+import com.cinema.cinema.types.ReservationStatusEnum;
+import com.cinema.cinema.types.ReservedSeatStatusEnum;
 
 @Service
 public class ReservedSeatService {
@@ -21,6 +24,10 @@ public class ReservedSeatService {
 
     public ReservedSeat getReservedSeatById(int id) {
         return reservedSeatRepository.findById(id).orElse(null);
+    }
+
+    public List<ReservedSeat> getAllReservedSeatsByReservation(int reservationId) {
+        return reservedSeatRepository.findAllByReservationId(reservationId);
     }
 
     public ReservedSeat deleteReservedSeatById(int id) {
@@ -49,6 +56,40 @@ public class ReservedSeatService {
         reservedSeat.setSeat(reservedSeatRequestDto.seat());
         reservedSeat.setStatus(reservedSeatRequestDto.status());
         return reservedSeatRepository.save(reservedSeat);
+    }
+
+    public List<ReservedSeat> addReservedListSeats(List<ReservedSeatRequestDto> reservedListSeatRequestDtos) {
+        List<ReservedSeat> reservedSeats = new ArrayList<>();
+        for (ReservedSeatRequestDto dto : reservedListSeatRequestDtos) {
+            ReservedSeat reservedSeat = ReservedSeat.builder()
+                    .reservation(dto.reservation())
+                    .seat(dto.seat())
+                    .status(dto.status())
+                    .build();
+            reservedSeats.add(reservedSeat);
+        }
+        return reservedSeatRepository.saveAll(reservedSeats);
+    }
+
+    public List<ReservedSeat> handleReservedSeat(int id, ReservationStatusEnum status) {
+
+        List<ReservedSeat> existingReservedSeats = getAllReservedSeatsByReservation(id);
+        if (existingReservedSeats == null || existingReservedSeats.isEmpty()) {
+            return new ArrayList<>();
+        }
+        if (status == ReservationStatusEnum.CONFIRMED) {
+            // Handle confirmed status
+            ReservedSeatStatusEnum newStatus = ReservedSeatStatusEnum.CONFIRMED;
+            existingReservedSeats.forEach(seat -> seat.setStatus(newStatus));
+            return reservedSeatRepository.saveAll(existingReservedSeats);
+
+        } else if (status == ReservationStatusEnum.CANCELLED) {
+            // Handle cancelled status
+            reservedSeatRepository.deleteAll(existingReservedSeats);
+            return new ArrayList<>();
+        }
+
+        return new ArrayList<>();
     }
 
 }

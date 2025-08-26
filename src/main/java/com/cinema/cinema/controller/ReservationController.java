@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cinema.cinema.dto.ReservationRequestDto;
 import com.cinema.cinema.entity.Reservation;
 import com.cinema.cinema.service.ReservationService;
+import com.cinema.cinema.service.ReservedSeatService;
 
 @RestController
 @RequestMapping("/reservations")
@@ -23,6 +24,9 @@ public class ReservationController {
 
     @Autowired
     private ReservationService reservationService;
+
+    @Autowired
+    private ReservedSeatService reservedSeatService;
 
     @GetMapping("/")
     public ResponseEntity<List<Reservation>> getAllReservations() {
@@ -63,6 +67,21 @@ public class ReservationController {
         Reservation newReservation = reservationService.addReservation(reservationRequestDto);
         if (newReservation != null) {
             return ResponseEntity.status(201).body(newReservation);
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping("/handle-confirmation/{id}")
+    public ResponseEntity<Reservation> confirmReservation(@PathVariable int id,
+            @RequestBody ReservationRequestDto reservationRequestDto) {
+        Reservation reservation = reservationService.getReservationById(id);
+        if (reservation == null) {
+            return ResponseEntity.status(404).body(null);
+        }
+        Reservation updatedReservation = reservationService.handleReservation(id, reservationRequestDto);
+        reservedSeatService.handleReservedSeat(id, reservationRequestDto.status());
+        if (updatedReservation != null) {
+            return ResponseEntity.status(201).body(updatedReservation);
         }
         return ResponseEntity.badRequest().build();
     }

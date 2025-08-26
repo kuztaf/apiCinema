@@ -71,4 +71,15 @@ public class ReservedSeatController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PostMapping("/batch")
+    public ResponseEntity<List<ReservedSeat>> addReservedSeats(
+            @RequestBody List<ReservedSeatRequestDto> reservedListSeatRequestDtos) {
+        List<ReservedSeat> newReservedSeats = reservedSeatService.addReservedListSeats(reservedListSeatRequestDtos);
+        if (newReservedSeats != null && !newReservedSeats.isEmpty()) {
+            return ResponseEntity.status(201).body(newReservedSeats);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
