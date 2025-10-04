@@ -15,12 +15,10 @@ public class CinemaApplication {
 				.ignoreIfMalformed()
 				.ignoreIfMissing()
 				.load();
-		
+
 		// Establecer las variables como propiedades del sistema
-		dotenv.entries().forEach(entry -> 
-			System.setProperty(entry.getKey(), entry.getValue())
-		);
-		
+		dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
+
 		SpringApplication.run(CinemaApplication.class, args);
 	}
 

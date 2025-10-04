@@ -3,6 +3,7 @@ package com.cinema.cinema.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import com.cinema.cinema.dto.UserRequestDto;
@@ -14,6 +15,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -51,6 +55,11 @@ public class UserService {
                 .password(userRequestDto.password())
                 .role(userRequestDto.role())
                 .build();
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        if (savedUser == null) {
+            return null;
+        }
+        publisher.publishEvent(savedUser);
+        return savedUser;
     }
 }
