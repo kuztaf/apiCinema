@@ -70,7 +70,7 @@ class MovieTest {
     void testEnumToString() {
 
         Movie movie = TestMovieFactory.createTestValidMovie();
-        assertEquals("Action", movie.getGender().getDisplayName());
+        assertEquals(movie.getGender().getDisplayName(), "Action");
 
     }
 
