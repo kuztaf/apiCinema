@@ -59,13 +59,41 @@ public class TestMovieRequestDtoFactory {
                 "http://poster.url/short.jpg");
     }
 
-    public static MovieRequestDto createEmptyMovieRequest() {
+    public static MovieRequestDto createMovieWithMinimumDuration() {
+    return new MovieRequestDto(
+            "Short Movie",
+            1,
+            MovieGenderEnum.ACTION,
+            "Invalid duration",
+            "http://poster.url/short.jpg");
+    }
+
+    public static MovieRequestDto createMovieWithLongTitle() {
+        String longTitle = "This is a very long movie title that exceeds normal length expectations for testing purposes";
+        return new MovieRequestDto(
+                longTitle,
+                120,
+                MovieGenderEnum.ACTION,
+                "Movie with a long title",
+                "http://poster.url/longtitle.jpg");
+    }
+
+    public static MovieRequestDto createNullMovieRequest() {
         return new MovieRequestDto(
                 null,
                 0,
                 null,
                 null,
                 null);
+    }
+
+      public static MovieRequestDto createEmptyMovieRequest() {
+        return new MovieRequestDto(
+                "",
+                0,
+                null,
+                "",
+                "");
     }
 
     public static MovieRequestDto createCustomMovieRequest(String title, int duration, MovieGenderEnum gender,
