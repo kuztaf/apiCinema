@@ -55,6 +55,18 @@ public class TestMovieFactory {
                 .build();
     }
 
+
+
+    public static Movie createTestMovieWithMinDuration() {
+        return Movie.builder()
+                .title("Short Film")
+                .duration(1)
+                .gender(MovieGenderEnum.DRAMA)
+                .description("A movie with minimum duration")
+                .posterUrl("http://poster.url/shortfilm.jpg")
+                .build();
+    }
+
     public static Movie createTestMovieWithInvalidDuration() {
         return Movie.builder()
                 .title("Short Movie")

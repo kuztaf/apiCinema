@@ -1,6 +1,8 @@
 
 package com.cinema.cinema.entity;
 
+import java.time.LocalDate;
+
 import com.cinema.cinema.types.MovieGenderEnum;
 
 import jakarta.persistence.Column;
@@ -50,4 +52,12 @@ public class Movie {
     @Size(max = 255)
     private String posterUrl;
 
+
+    public boolean isLongMovie() {
+        return duration > 150;
+    }
+
+    public String getSummary() {
+        return String.format("%s (%d min) - %s", title, duration, description);
+    }
 }
