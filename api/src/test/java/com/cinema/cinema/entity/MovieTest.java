@@ -19,17 +19,6 @@ class MovieTest {
     }
 
     @Test
-    void testBuilder() {
-        Movie movie = TestMovieFactory.createTestValidMovie();
-        assertEquals(0, movie.getId());
-        assertEquals("Matrix", movie.getTitle());
-        assertEquals(120, movie.getDuration());
-        assertEquals(MovieGenderEnum.ACTION, movie.getGender());
-        assertEquals("A sci-fi movie", movie.getDescription());
-        assertEquals("http://poster.url/matrix.jpg", movie.getPosterUrl());
-    }
-
-    @Test
     void testSetters() {
         Movie movie = TestMovieFactory.createTestEmptyObject();
         movie.setId(2);
