@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import com.cinema.cinema.util.TestMovieFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MovieTest {
+class MovieTest {
 
     @Test
     void testMovieConstructorAndGetters() {
@@ -70,7 +70,7 @@ public class MovieTest {
     void testEnumToString() {
 
         Movie movie = TestMovieFactory.createTestValidMovie();
-        assertEquals(movie.getGender().getDisplayName(), "Action");
+        assertEquals("Action", movie.getGender().getDisplayName());
 
     }
 
