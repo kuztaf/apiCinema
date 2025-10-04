@@ -17,15 +17,16 @@ import com.cinema.cinema.dto.SeatRequestDto;
 import com.cinema.cinema.entity.Seat;
 import com.cinema.cinema.service.SeatService;
 
-
-
 @RestController
 @RequestMapping("/seats")
 public class SeatController {
 
-    @Autowired
-    private SeatService seatService;
+    private final SeatService seatService;
 
+    @Autowired
+    public SeatController(SeatService seatService) {
+        this.seatService = seatService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Seat>> getAllSeat() {

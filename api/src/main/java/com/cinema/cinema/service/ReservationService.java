@@ -12,8 +12,12 @@ import com.cinema.cinema.repository.ReservationRepository;
 @Service
 public class ReservationService {
 
+    private final ReservationRepository reservationRepository;
+
     @Autowired
-    private ReservationRepository reservationRepository;
+    public ReservationService(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();

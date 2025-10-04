@@ -21,8 +21,12 @@ import com.cinema.cinema.service.ReservedSeatService;
 @RequestMapping("/reserved-seats")
 public class ReservedSeatController {
 
+    private final ReservedSeatService reservedSeatService;
+
     @Autowired
-    private ReservedSeatService reservedSeatService;
+    public ReservedSeatController(ReservedSeatService reservedSeatService) {
+        this.reservedSeatService = reservedSeatService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<ReservedSeat>> getAllReservedSeats() {

@@ -12,8 +12,12 @@ import com.cinema.cinema.repository.SeatRepository;
 @Service
 public class SeatService {
 
+    private final SeatRepository seatRepository;
+
     @Autowired
-    private SeatRepository seatRepository;
+    public SeatService(SeatRepository seatRepository) {
+        this.seatRepository = seatRepository;
+    }
 
     public List<Seat> getAllSeats() {
         return seatRepository.findAll();

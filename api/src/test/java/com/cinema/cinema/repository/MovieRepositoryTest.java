@@ -15,8 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest // arranca solo la capa de persistencia con H2 en memoria
 class MovieRepositoryTest {
 
+    private final MovieRepository movieRepository;
+
     @Autowired
-    private MovieRepository movieRepository;
+    public MovieRepositoryTest(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     @Test
     void testSaveAndFindById() {

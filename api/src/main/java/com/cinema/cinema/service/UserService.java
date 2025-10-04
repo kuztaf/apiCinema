@@ -13,11 +13,15 @@ import com.cinema.cinema.repository.UserRepository;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    private final ApplicationEventPublisher publisher;
 
     @Autowired
-    private ApplicationEventPublisher publisher;
+    public UserService(UserRepository userRepository, ApplicationEventPublisher publisher) {
+        this.userRepository = userRepository;
+        this.publisher = publisher;
+    }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();

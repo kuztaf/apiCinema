@@ -23,11 +23,15 @@ import com.cinema.cinema.service.SeatService;
 @RequestMapping("/rooms")
 public class RoomController {
 
-    @Autowired
-    private RoomService roomService;
+    private final RoomService roomService;
+
+    private final SeatService seatService;
 
     @Autowired
-    private SeatService seatService;
+    public RoomController(RoomService roomService, SeatService seatService) {
+        this.roomService = roomService;
+        this.seatService = seatService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Room>> getAllRooms() {

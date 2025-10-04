@@ -15,8 +15,12 @@ import com.cinema.cinema.types.ReservedSeatStatusEnum;
 @Service
 public class ReservedSeatService {
 
+    private final ReservedSeatRepository reservedSeatRepository;
+
     @Autowired
-    private ReservedSeatRepository reservedSeatRepository;
+    public ReservedSeatService(ReservedSeatRepository reservedSeatRepository) {
+        this.reservedSeatRepository = reservedSeatRepository;
+    }
 
     public List<ReservedSeat> getAllReservedSeats() {
         return reservedSeatRepository.findAll();

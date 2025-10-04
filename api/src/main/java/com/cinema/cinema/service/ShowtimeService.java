@@ -12,8 +12,12 @@ import com.cinema.cinema.repository.ShowtimeRepository;
 @Service
 public class ShowtimeService {
 
+    private final ShowtimeRepository showtimeRepository;
+
     @Autowired
-    private ShowtimeRepository showtimeRepository;
+    public ShowtimeService(ShowtimeRepository showtimeRepository) {
+        this.showtimeRepository = showtimeRepository;
+    }
 
     public List<Showtime> getAllShowtimes() {
         return showtimeRepository.findAll();

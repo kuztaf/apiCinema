@@ -17,15 +17,16 @@ import com.cinema.cinema.dto.ShowtimeRequestDto;
 import com.cinema.cinema.entity.Showtime;
 import com.cinema.cinema.service.ShowtimeService;
 
-
-
-
 @RestController
 @RequestMapping("/showtimes")
 public class ShowtimeController {
 
+    private final ShowtimeService showtimeService;
+
     @Autowired
-    private ShowtimeService showtimeService;
+    public ShowtimeController(ShowtimeService showtimeService) {
+        this.showtimeService = showtimeService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Showtime>> getAllShowtimes() {
@@ -69,6 +70,5 @@ public class ShowtimeController {
         }
         return ResponseEntity.badRequest().build();
     }
-    
 
 }

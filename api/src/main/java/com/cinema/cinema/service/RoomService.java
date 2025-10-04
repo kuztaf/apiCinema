@@ -12,8 +12,12 @@ import com.cinema.cinema.repository.RoomRepository;
 @Service
 public class RoomService {
 
+    private final RoomRepository roomRepository;
+
     @Autowired
-    private RoomRepository roomRepository;
+    public RoomService(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
 
     public List<Room> getAllRooms() {
         return roomRepository.findAll();

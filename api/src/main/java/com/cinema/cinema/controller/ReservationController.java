@@ -22,11 +22,14 @@ import com.cinema.cinema.service.ReservedSeatService;
 @RequestMapping("/reservations")
 public class ReservationController {
 
-    @Autowired
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
+    private final ReservedSeatService reservedSeatService;
 
     @Autowired
-    private ReservedSeatService reservedSeatService;
+    public ReservationController(ReservationService reservationService, ReservedSeatService reservedSeatService) {
+        this.reservationService = reservationService;
+        this.reservedSeatService = reservedSeatService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Reservation>> getAllReservations() {

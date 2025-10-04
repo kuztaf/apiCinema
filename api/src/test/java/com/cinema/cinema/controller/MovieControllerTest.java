@@ -25,14 +25,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MovieController.class) // solo carga el controller
 class MovieControllerTest {
 
-        @Autowired
-        private MockMvc mockMvc;
+        private final MockMvc mockMvc;
 
         @MockitoBean
         private MovieService movieService;
 
+        private final ObjectMapper objectMapper; // para convertir objetos a JSON
+
         @Autowired
-        private ObjectMapper objectMapper; // para convertir objetos a JSON
+        public MovieControllerTest(MockMvc mockMvc, MovieService movieService, ObjectMapper objectMapper) {
+                this.mockMvc = mockMvc;
+                this.movieService = movieService;
+                this.objectMapper = objectMapper;
+        }
 
         @Test
         void testGetAllMovies() throws Exception {

@@ -22,8 +22,12 @@ import com.cinema.cinema.service.MovieService;
 @RequestMapping("/movies")
 public class MovieController {
 
+    private final MovieService movieService;
+
     @Autowired
-    private MovieService movieService;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Movie>> getAllMovies() {
