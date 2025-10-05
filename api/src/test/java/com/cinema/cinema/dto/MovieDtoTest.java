@@ -44,11 +44,11 @@ public class MovieDtoTest {
         void testEmptyValues() {
             MovieRequestDto dto = TestMovieRequestDtoFactory.createNullMovieRequest();
 
-            assumeTrue(dto.title() == null );
-            assertTrue(dto.duration() == 0);
-            assertTrue(dto.gender() == null);
-            assertTrue(dto.description() == null);
-            assertTrue(dto.posterUrl() == null);
+            assertEquals(null, dto.title());
+            assertEquals(0, dto.duration());
+            assertEquals(null, dto.gender());
+            assertEquals(null, dto.description());
+            assertEquals(null, dto.posterUrl());
         }
     }
   @Nested

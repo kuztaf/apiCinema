@@ -18,6 +18,8 @@ import com.cinema.cinema.dto.MovieRequestDto;
 import com.cinema.cinema.entity.Movie;
 import com.cinema.cinema.service.MovieService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
@@ -53,8 +55,9 @@ public class MovieController {
         return ResponseEntity.notFound().build();
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable int id, @RequestBody MovieRequestDto movieRequestDto) {
+    public ResponseEntity<Movie> updateMovie(@PathVariable int id,@Valid @RequestBody MovieRequestDto movieRequestDto) {
         Movie updatedMovie = movieService.updateMovie(id, movieRequestDto);
         if (updatedMovie != null) {
             return ResponseEntity.ok(updatedMovie);
@@ -63,7 +66,7 @@ public class MovieController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Movie> addMovie(@RequestBody MovieRequestDto movieRequestDto) {
+    public ResponseEntity<Movie> addMovie(@Valid @RequestBody MovieRequestDto movieRequestDto) {
         Movie newMovie = movieService.addMovie(movieRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(newMovie);
     }

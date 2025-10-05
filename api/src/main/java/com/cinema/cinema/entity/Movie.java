@@ -1,10 +1,8 @@
 
 package com.cinema.cinema.entity;
 
-import java.time.LocalDate;
 
 import com.cinema.cinema.types.MovieGenderEnum;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
